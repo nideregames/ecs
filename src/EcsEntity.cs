@@ -74,15 +74,18 @@ namespace Leopotam.Ecs {
             return entity;
         }
 
-        /// <summary>
-        /// Returns exist component on entity or adds new one otherwise.
-        /// </summary>
-        /// <typeparam name="T">Type of component.</typeparam>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ref T Set<T>(in this EcsEntity entity) where T : struct => Get<T>();
+
+            /// <summary>
+            /// Returns exist component on entity or adds new one otherwise.
+            /// </summary>
+            /// <typeparam name="T">Type of component.</typeparam>
 #if ENABLE_IL2CPP
         [Unity.IL2CPP.CompilerServices.Il2CppSetOption (Unity.IL2CPP.CompilerServices.Option.NullChecks, false)]
         [Unity.IL2CPP.CompilerServices.Il2CppSetOption (Unity.IL2CPP.CompilerServices.Option.ArrayBoundsChecks, false)]
 #endif
-        [MethodImpl (MethodImplOptions.AggressiveInlining)]
+            [MethodImpl (MethodImplOptions.AggressiveInlining)]
         public static ref T Get<T> (in this EcsEntity entity) where T : struct {
             ref var entityData = ref entity.Owner.GetEntityData (entity);
 #if DEBUG
