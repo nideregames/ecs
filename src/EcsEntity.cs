@@ -75,7 +75,7 @@ namespace Leopotam.Ecs {
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ref T Set<T>(in this EcsEntity entity) where T : struct => Get<T>();
+        public static ref T Set<T>(in this EcsEntity entity) where T : struct => ref Get<T>(entity);
 
             /// <summary>
             /// Returns exist component on entity or adds new one otherwise.
